@@ -1,0 +1,217 @@
+{
+    "a_galaxy_workflow": "true", 
+    "format-version": "0.1", 
+    "name": "CTPsingle_workflow", 
+    "steps": {
+        "1": {
+            "tool_id": null, 
+            "content_id": null, 
+            "uuid": "62e2f6b1-736d-4b48-889f-73724f545584", 
+            "tool_version": null, 
+            "outputs": [], 
+            "workflow_outputs": [
+                {
+                    "output_name": "output", 
+                    "uuid": "7e753025-4708-46d6-8ea6-d753c2667a19", 
+                    "label": null
+                }
+            ], 
+            "annotation": "CNA_INPUT", 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "CNA_INPUT", 
+                    "name": "CNA_INPUT"
+                }
+            ], 
+            "tool_errors": null, 
+            "position": {
+                "top": 272, 
+                "left": 165
+            }, 
+            "tool_state": "{\"name\": \"CNA_INPUT\"}", 
+            "label": "CNA_INPUT", 
+            "type": "data_input", 
+            "id": 1, 
+            "name": "Input dataset"
+        }, 
+        "0": {
+            "tool_id": null, 
+            "content_id": null, 
+            "uuid": "aa8d9399-47fa-4096-a791-9bac550b1458", 
+            "tool_version": null, 
+            "outputs": [], 
+            "workflow_outputs": [
+                {
+                    "output_name": "output", 
+                    "uuid": "b4526f6f-f79b-4ea7-8430-561e9aec5194", 
+                    "label": null
+                }
+            ], 
+            "annotation": "VCF_INPUT", 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "VCF_INPUT", 
+                    "name": "VCF_INPUT"
+                }
+            ], 
+            "tool_errors": null, 
+            "position": {
+                "top": 169, 
+                "left": 164
+            }, 
+            "tool_state": "{\"name\": \"VCF_INPUT\"}", 
+            "label": "VCF_INPUT", 
+            "type": "data_input", 
+            "id": 0, 
+            "name": "Input dataset"
+        }, 
+        "3": {
+            "tool_id": "CTPsingle", 
+            "content_id": "CTPsingle", 
+            "uuid": "67b97ca0-8509-4685-ba6c-38b2ca752adf", 
+            "tool_version": "2.0.0", 
+            "outputs": [
+                {
+                    "type": "txt", 
+                    "name": "cellularity"
+                }, 
+                {
+                    "type": "txt", 
+                    "name": "num_clusters"
+                }
+            ], 
+            "post_job_actions": {
+                "HideDatasetActionnum_clusters": {
+                    "output_name": "num_clusters", 
+                    "action_type": "HideDatasetAction", 
+                    "action_arguments": {}
+                }, 
+                "HideDatasetActioncellularity": {
+                    "output_name": "cellularity", 
+                    "action_type": "HideDatasetAction", 
+                    "action_arguments": {}
+                }
+            }, 
+            "workflow_outputs": [], 
+            "annotation": "", 
+            "input_connections": {
+                "mutation_frequencies_file": {
+                    "output_name": "CTPsingle_input", 
+                    "id": 2
+                }, 
+                "input_log_file": {
+                    "output_name": "input_prep_log_file", 
+                    "id": 2
+                }
+            }, 
+            "inputs": [], 
+            "tool_errors": null, 
+            "position": {
+                "top": 269, 
+                "left": 764
+            }, 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/opt/galaxy/galaxy-app/tool-data/shared/ucsc/chrom/?.len\\\"\", \"input_log_file\": \"null\", \"mutation_frequencies_file\": \"null\"}", 
+            "label": null, 
+            "type": "tool", 
+            "id": 3, 
+            "name": "CTPsingle"
+        }, 
+        "2": {
+            "tool_id": "CTPsingle_input_preparation", 
+            "content_id": "CTPsingle_input_preparation", 
+            "uuid": "fac6db48-8988-414a-96a7-64caedc9a4de", 
+            "tool_version": "2.0.0", 
+            "outputs": [
+                {
+                    "type": "frq", 
+                    "name": "CTPsingle_input"
+                }, 
+                {
+                    "type": "log", 
+                    "name": "input_prep_log_file"
+                }
+            ], 
+            "post_job_actions": {
+                "HideDatasetActioninput_prep_log_file": {
+                    "output_name": "input_prep_log_file", 
+                    "action_type": "HideDatasetAction", 
+                    "action_arguments": {}
+                }, 
+                "HideDatasetActionCTPsingle_input": {
+                    "output_name": "CTPsingle_input", 
+                    "action_type": "HideDatasetAction", 
+                    "action_arguments": {}
+                }
+            }, 
+            "workflow_outputs": [], 
+            "annotation": "This is the input preparation script. It takes CNA_INPUT and VCF_INPUT files as its inputs and produces input for CTP_single. Although shown here, log file does not affect the final results.", 
+            "input_connections": {
+                "SNV_file": {
+                    "output_name": "output", 
+                    "id": 0
+                }, 
+                "CNA_file": {
+                    "output_name": "output", 
+                    "id": 1
+                }
+            }, 
+            "inputs": [], 
+            "tool_errors": null, 
+            "position": {
+                "top": 202, 
+                "left": 414
+            }, 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"SNV_file\": \"null\", \"CNA_file\": \"null\"}", 
+            "label": null, 
+            "type": "tool", 
+            "id": 2, 
+            "name": "CTPsingle_input_preparation"
+        }, 
+        "4": {
+            "tool_id": "smc_het_eval", 
+            "content_id": "smc_het_eval", 
+            "uuid": "f5630b66-d37e-4a59-bcc0-60585c249855", 
+            "tool_version": "0.1.0", 
+            "outputs": [
+                {
+                    "type": "txt", 
+                    "name": "outfile"
+                }
+            ], 
+            "post_job_actions": {}, 
+            "workflow_outputs": [
+                {
+                    "output_name": "outfile", 
+                    "uuid": "f7d7ffac-8bbe-418d-9903-0d34df1fd325", 
+                    "label": "OUTPUT"
+                }
+            ], 
+            "annotation": "", 
+            "input_connections": {
+                "cellularity|predfile": {
+                    "output_name": "cellularity", 
+                    "id": 3
+                }, 
+                "population|predfile": {
+                    "output_name": "num_clusters", 
+                    "id": 3
+                }
+            }, 
+            "inputs": [], 
+            "tool_errors": null, 
+            "position": {
+                "top": 390.5, 
+                "left": 1111
+            }, 
+            "tool_state": "{\"cocluster_assignment\": \"{\\\"submit\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"__page__\": 0, \"approx\": \"{\\\"enable\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"__rerun_remap_job_id__\": null, \"proportion\": \"{\\\"submit\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"sample\": \"\\\"/opt/galaxy/data/Tumour1/Tumour1\\\"\", \"cellularity\": \"{\\\"predfile\\\": null, \\\"submit\\\": \\\"yes\\\", \\\"__current_case__\\\": 0}\", \"cluster_assignment\": \"{\\\"submit\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"population\": \"{\\\"predfile\\\": null, \\\"submit\\\": \\\"yes\\\", \\\"__current_case__\\\": 0}\"}", 
+            "label": null, 
+            "type": "tool", 
+            "id": 4, 
+            "name": "SMC-Het Evaluator"
+        }
+    }, 
+    "annotation": "", 
+    "uuid": "94ec2b41-9b22-4393-a8c6-b34b4f8b9875"
+}
